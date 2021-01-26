@@ -1,0 +1,6 @@
+DESCRIPTION;*ITEM;UDC_$#_UTEXT
+FEIMPORT_6_SPECIAL;ITEM6SP.,[]?:{}`-=!@#$%^*()+_'|&>;UDC_ITEM6SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_7_SPECIAL;ITEM7SP.,[]?:{}`-=!@#$%^*()+_'|&>;UDC_ITEM7SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_8_SPECIAL;ITEM8SP.,[]?:{}`-=!@#$%^*()+_'|&>;UDC_ITEM8SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_9_SPECIAL;ITEM9SP.,[]?:{}`-=!@#$%^*()+_'|&>;UDC_ITEM9SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_10_SPECIAL;ITEM10SP.,[]?:{}`-=!@#$%^*()+_'|&>;UDC_ITEM10SP.,[]?:{}`-=!@#$%^*()+_'|&>

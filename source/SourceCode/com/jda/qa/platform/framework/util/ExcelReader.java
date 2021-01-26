@@ -1,0 +1,568 @@
+package SourceCode.com.jda.qa.platform.framework.util;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Calendar;
+
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFCreationHelper;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFHyperlink;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+/**
+ * 
+ * This class is used to read an Excel file
+ * 
+ * @author Santosh Kumar Medchalam and Vinay Kumar Tangella
+ *
+ */
+
+public class ExcelReader {
+	public String path;
+	public FileInputStream fis = null;
+	public FileOutputStream fileOut = null;
+	private XSSFWorkbook workbook = null;
+	private XSSFSheet sheet = null;
+	private XSSFRow row = null;
+	private XSSFCell cell = null;
+	
+	/**
+	 * This constructor is used to create the ExcelReader object which is used to read an excel file specified by the path 
+	 * 
+	 * @param path  The path of the excel file
+	 */
+
+	public ExcelReader(String path) {
+
+		this.path = path;
+		try {
+			fis = new FileInputStream(path);
+			workbook = new XSSFWorkbook(fis);
+			sheet = workbook.getSheetAt(0);
+			fis.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	/**
+	 * This method will return the number of rows in the mentioned excel sheet
+	 * 
+	 * @param sheetName  The Sheet name in the excel file 
+	 * @return returns the row count in a sheet
+	 */
+
+	public int getRowCount(String sheetName) {
+		int index = workbook.getSheetIndex(sheetName);
+		if (index == -1)
+			return 0;
+		else {
+			sheet = workbook.getSheetAt(index);
+			int number = sheet.getLastRowNum() + 1;
+			return number;
+		}
+
+	}
+
+	/**
+	 * This method will return the cell data in String format.
+	 * 
+	 * @param sheetName  The Sheet name where the data will be fetched
+	 * @param colName The Column name where the data is fetched
+	 * @param rowNum The row number where the data is fetched
+	 * @return Returns the data from a cell in the provided sheetname formed by the intersection of colName and rownum
+	 */
+	public String getCellData(String sheetName, String colName, int rowNum) {
+		try {
+			if (rowNum <= 0)
+				return "";
+
+			int index = workbook.getSheetIndex(sheetName);
+			int col_Num = -1;
+			if (index == -1)
+				return "";
+
+			sheet = workbook.getSheetAt(index);
+			row = sheet.getRow(0);
+			for (int i = 0; i < row.getLastCellNum(); i++) {
+				if (row.getCell(i).getStringCellValue().trim()
+						.equals(colName.trim()))
+					col_Num = i;
+			}
+			if (col_Num == -1)
+				return "";
+
+			sheet = workbook.getSheetAt(index);
+			row = sheet.getRow(rowNum - 1);
+			if (row == null)
+				return "";
+			cell = row.getCell(col_Num);
+
+			if (cell == null)
+				return "";
+			if (cell.getCellType() == Cell.CELL_TYPE_STRING){
+				return cell.getStringCellValue();
+			}else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+				
+				String cellText = String.valueOf(cell.getNumericCellValue());
+				
+				cellText = formatCellData(cellText);
+				
+				return cellText;
+			}
+			else if (cell.getCellType() == Cell.CELL_TYPE_FORMULA) {
+				String cellText = String.valueOf(cell.getNumericCellValue());
+				if (HSSFDateUtil.isCellDateFormatted(cell)) {
+					// format in form of M/D/YY
+					double d = cell.getNumericCellValue();
+
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(HSSFDateUtil.getJavaDate(d));
+					cellText = (String.valueOf(cal.get(Calendar.YEAR)))
+							.substring(2);
+					cellText = cal.get(Calendar.DAY_OF_MONTH) + "/"
+							+ cal.get(Calendar.MONTH) + 1 + "/" + cellText;
+
+					// System.out.println(cellText);
+
+				}
+
+				return cellText;
+			} else if (cell.getCellType() == Cell.CELL_TYPE_BLANK)
+				return "";
+			else
+				return String.valueOf(cell.getBooleanCellValue());
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return "row " + rowNum + " or column " + colName
+					+ " does not exist in xls";
+		}
+	}
+
+	
+	/**
+	 * This method will return the cell data in String format.
+	 * 
+	 * @param sheetName  The Sheet name where the data will be fetched
+	 * @param colNum The Column number where the data is fetched
+	 * @param rowNum The row number where the data is fetched
+	 * @return Returns the data from a cell in the provided sheetname formed by the intersection of colNum and rownum
+	 */
+	public String getCellData(String sheetName, int colNum, int rowNum) {
+		try {
+			if (rowNum <= 0)
+				return "";
+
+			int index = workbook.getSheetIndex(sheetName);
+
+			if (index == -1)
+				return "";
+
+			sheet = workbook.getSheetAt(index);
+			row = sheet.getRow(rowNum - 1);
+			if (row == null)
+				return "";
+			cell = row.getCell(colNum);
+			if (cell == null)
+				return "";
+
+			if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+				return cell.getStringCellValue();
+			} else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC
+					|| cell.getCellType() == Cell.CELL_TYPE_FORMULA) {
+
+				String cellText = String.valueOf(cell.getNumericCellValue());
+				if (HSSFDateUtil.isCellDateFormatted(cell)) {
+					// format in form of M/D/YY
+					double d = cell.getNumericCellValue();
+
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(HSSFDateUtil.getJavaDate(d));
+					cellText = (String.valueOf(cal.get(Calendar.YEAR)))
+							.substring(2);
+					cellText = cal.get(Calendar.MONTH) + 1 + "/"
+							+ cal.get(Calendar.DAY_OF_MONTH) + "/" + cellText;
+
+					// System.out.println(cellText);
+
+				}
+
+				return cellText;
+			} else if (cell.getCellType() == Cell.CELL_TYPE_BLANK)
+				return "";
+			else
+				return String.valueOf(cell.getBooleanCellValue());
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return "row " + rowNum + " or column " + colNum
+					+ " does not exist  in xls";
+		}
+	}
+
+	
+	/**
+	 * This method will be used to set the cell data in the excel sheet
+	 * 
+	 * @param sheetName The Sheet name where the data needs to be set
+	 * @param colName colNum The Column number where the data needs to be set
+	 * @param rowNum rowNum The row number where the data needs to be set
+	 * @param data The Data which needs to be set in the cell
+	 * @return returns true if data is set successfully else false
+	 */
+	public boolean setCellData(String sheetName, String colName, int rowNum,
+			String data) {
+		try {
+			fis = new FileInputStream(path);
+			workbook = new XSSFWorkbook(fis);
+
+			if (rowNum <= 0)
+				return false;
+
+			int index = workbook.getSheetIndex(sheetName);
+			int colNum = -1;
+			if (index == -1)
+				return false;
+
+			sheet = workbook.getSheetAt(index);
+
+			row = sheet.getRow(0);
+			for (int i = 0; i < row.getLastCellNum(); i++) {
+				// System.out.println(row.getCell(i).getStringCellValue().trim());
+				if (row.getCell(i).getStringCellValue().trim().equals(colName))
+					colNum = i;
+			}
+			if (colNum == -1)
+				return false;
+
+			sheet.autoSizeColumn(colNum);
+			row = sheet.getRow(rowNum - 1);
+			if (row == null)
+				row = sheet.createRow(rowNum - 1);
+
+			cell = row.getCell(colNum);
+			if (cell == null)
+				cell = row.createCell(colNum);
+
+			// cell style
+			// CellStyle cs = workbook.createCellStyle();
+			// cs.setWrapText(true);
+			// cell.setCellStyle(cs);
+			cell.setCellValue(data);
+
+			fileOut = new FileOutputStream(path);
+
+			workbook.write(fileOut);
+
+			fileOut.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * This method will be used to set the cell data in the excel sheet
+	 * 
+	 * @param sheetName The Sheet name where the data needs to be set
+	 * @param colName colNum The Column number where the data needs to be set
+	 * @param rowNum rowNum The row number where the data needs to be set
+	 * @param data The Data which needs to be set in the cell
+	 * @param url The link to the data
+	 * @return returns true if data is set successfully else false
+	 */
+	
+	public boolean setCellData(String sheetName, String colName, int rowNum,
+			String data, String url) {
+		try {
+			fis = new FileInputStream(path);
+			workbook = new XSSFWorkbook(fis);
+
+			if (rowNum <= 0)
+				return false;
+
+			int index = workbook.getSheetIndex(sheetName);
+			int colNum = -1;
+			if (index == -1)
+				return false;
+
+			sheet = workbook.getSheetAt(index);
+			row = sheet.getRow(0);
+			for (int i = 0; i < row.getLastCellNum(); i++) {
+				// System.out.println(row.getCell(i).getStringCellValue().trim());
+				if (row.getCell(i).getStringCellValue().trim()
+						.equalsIgnoreCase(colName))
+					colNum = i;
+			}
+
+			if (colNum == -1)
+				return false;
+			sheet.autoSizeColumn(colNum); // ashish
+			row = sheet.getRow(rowNum - 1);
+			if (row == null)
+				row = sheet.createRow(rowNum - 1);
+
+			cell = row.getCell(colNum);
+			if (cell == null)
+				cell = row.createCell(colNum);
+
+			cell.setCellValue(data);
+			XSSFCreationHelper createHelper = workbook.getCreationHelper();
+
+			// cell style for hyperlinks
+			// by default hypelrinks are blue and underlined
+			CellStyle hlink_style = workbook.createCellStyle();
+			XSSFFont hlink_font = workbook.createFont();
+			hlink_font.setUnderline(XSSFFont.U_SINGLE);
+			hlink_font.setColor(IndexedColors.BLUE.getIndex());
+			hlink_style.setFont(hlink_font);
+			// hlink_style.setWrapText(true);
+
+			XSSFHyperlink link = createHelper
+					.createHyperlink(XSSFHyperlink.LINK_FILE);
+			link.setAddress(url);
+			cell.setHyperlink(link);
+			cell.setCellStyle(hlink_style);
+
+			fileOut = new FileOutputStream(path);
+			workbook.write(fileOut);
+
+			fileOut.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * This Method is used to add an new Sheet to the Excel File
+	 * 
+	 * @param sheetname  The name of the sheet to be added
+	 * @return returns true if sheet is created successfully else false
+	 */
+	public boolean addSheet(String sheetname) {
+
+		FileOutputStream fileOut;
+		try {
+			workbook.createSheet(sheetname);
+			fileOut = new FileOutputStream(path);
+			workbook.write(fileOut);
+			fileOut.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * This method is used to delete a sheet from the excel file
+	 * 
+	 * @param sheetName The name of the sheet to be deleted
+	 * @return returns true if sheet is removed successfully else false if sheet does not exist
+	 */
+	public boolean removeSheet(String sheetName) {
+		int index = workbook.getSheetIndex(sheetName);
+		if (index == -1)
+			return false;
+
+		FileOutputStream fileOut;
+		try {
+			workbook.removeSheetAt(index);
+			fileOut = new FileOutputStream(path);
+			workbook.write(fileOut);
+			fileOut.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * This method is used to add a column to the Excel sheet
+	 * 
+	 * @param sheetName The Sheet name to which the column is added
+	 * @param colName The name of the column to be added
+	 * @return returns true if column is created successfully
+	 */
+	public boolean addColumn(String sheetName, String colName) {
+		try {
+			fis = new FileInputStream(path);
+			workbook = new XSSFWorkbook(fis);
+			int index = workbook.getSheetIndex(sheetName);
+			if (index == -1)
+				return false;
+
+			XSSFCellStyle style = workbook.createCellStyle();
+			style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
+			style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
+			sheet = workbook.getSheetAt(index);
+
+			row = sheet.getRow(0);
+			if (row == null)
+				row = sheet.createRow(0);
+
+			// cell = row.getCell();
+			// if (cell == null)
+			// System.out.println(row.getLastCellNum());
+			if (row.getLastCellNum() == -1)
+				cell = row.createCell(0);
+			else
+				cell = row.createCell(row.getLastCellNum());
+
+			cell.setCellValue(colName);
+			cell.setCellStyle(style);
+
+			fileOut = new FileOutputStream(path);
+			workbook.write(fileOut);
+			fileOut.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+
+	}
+
+	/**
+	 * This Method is used to remove a column from the excel sheet
+	 * 
+	 * @param sheetName The Sheet name from which the column is to be removed
+	 * @param colNum The name of the column to be removed
+	 * @return returns true if column is deleted successfully
+	 */
+	public boolean removeColumn(String sheetName, int colNum) {
+		try {
+			if (!isSheetExist(sheetName))
+				return false;
+			fis = new FileInputStream(path);
+			workbook = new XSSFWorkbook(fis);
+			sheet = workbook.getSheet(sheetName);
+			XSSFCellStyle style = workbook.createCellStyle();
+			style.setFillForegroundColor(HSSFColor.GREY_40_PERCENT.index);
+			@SuppressWarnings("unused")
+			XSSFCreationHelper createHelper = workbook.getCreationHelper();
+			style.setFillPattern(HSSFCellStyle.NO_FILL);
+
+			for (int i = 0; i < getRowCount(sheetName); i++) {
+				row = sheet.getRow(i);
+				if (row != null) {
+					cell = row.getCell(colNum);
+					if (cell != null) {
+						cell.setCellStyle(style);
+						row.removeCell(cell);
+					}
+				}
+			}
+			fileOut = new FileOutputStream(path);
+			workbook.write(fileOut);
+			fileOut.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
+
+	/**
+	 * This method is used to know the existance of a sheet in the excel file. 
+	 * 
+	 * @param sheetName The name of the sheet
+	 * @return true if sheet exists else will return false
+	 */
+	public boolean isSheetExist(String sheetName) {
+		int index = workbook.getSheetIndex(sheetName);
+		if (index == -1) {
+			index = workbook.getSheetIndex(sheetName.toUpperCase());
+			if (index == -1)
+				return false;
+			else
+				return true;
+		} else
+			return true;
+	}
+	
+	/**
+	 * This method will return the number of columns in the exceh sheet
+	 * 
+	 * @param sheetName The Sheet name in the excel file
+	 * @return returns the column count in a sheet
+	 */
+	public int getColumnCount(String sheetName) {
+		// check if sheet exists
+		if (!isSheetExist(sheetName))
+			return -1;
+
+		sheet = workbook.getSheet(sheetName);
+		row = sheet.getRow(0);
+
+		if (row == null)
+			return -1;
+
+		return row.getLastCellNum();
+
+	}
+	
+	/**
+	 * 
+	 * This method will return the row number in the excel sheet, 
+	 * where the cell data matches with the cell data under the mentioned column 
+	 * 
+	 * @param sheetName  The name of the excel sheet
+	 * @param colName The column name 
+	 * @param cellValue the value using which the row is identified
+	 * @return The row number in the excel sheet,where the cell data matches with the cell data under the mentioned column 
+	 */
+	public int getCellRowNum(String sheetName, String colName, String cellValue) {
+
+		for (int i = 2; i <= getRowCount(sheetName); i++) {
+			if (getCellData(sheetName, colName, i).equalsIgnoreCase(cellValue)) {
+				return i;
+			}
+		}
+		return -1;
+
+	}
+
+	/**
+	 * This method is used to trim the decimal zeros if the integral value itself is zero.
+	 * 
+	 * @param data The data which needs to be formatted.
+	 * @return the formatted data
+	 */
+	
+	public static String formatCellData(String data) {
+
+		String[] vals = data.split("\\.");
+
+		if (vals.length == 2 && (Integer.parseInt(vals[1]) > 0)) {
+			return data;
+		} else {
+			return vals[0];
+		}
+
+	}
+
+}

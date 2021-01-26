@@ -1,0 +1,29 @@
+browserType = chrome
+#iexplore
+serverURL =http://in2npdvapp02:9301/jda/shell/home
+## http://md1npdvuitst01:9001/jda/shell/
+##http://localhost:7001/jda/shell/
+##http://md1npdvpromoc03:7001
+## http://in2npdvpromo01:9001
+
+##http://j1011493win7lt:7001/jda/shell/ 
+
+##http://j1011493win7lt:9090/Promo/promo/main.html
+
+# http://in2npdvapp04:9801/jda/shell/
+locale=en
+
+# DB Users #
+sampleDBUser=SAMPLE_DP3
+wwfDBUser=WWFMGR_DP3
+
+# Method Invoker Details #
+
+methodInvokerClassName=com.jda.qa.platform.framework.browser.WebWorksMethodInvoker
+
+# Date,Date-time,Decimal and Integer Formats #
+
+dateFormat=M/d/yy
+dateTimeFormat=M/d/yy hh:mm a
+decimalFormat=###,###.000
+integerFormat=###,###

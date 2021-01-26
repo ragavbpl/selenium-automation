@@ -1,0 +1,116 @@
+## Locators on the Promotions Worklist  page for ##
+WorkList_Approvals=//*[@id="approvalsOptionButton-btnInnerEl"]
+WorkList_ApproveBtn=//*[@id="approveButton-textEl"]
+WorkList_RecallBtn=//*[@id="recallButton-textEl"]
+WorkList_RejectBtn=//*[@id="rejectButton-textEl"]
+WorkList_PublishBtn=//*[@id="publishOptionButton-btnIconEl"]
+WorkList_PublishBtnDisabled=//*[@class="x-btn x-unselectable x-btn-j-standard-button-small x-noicon x-btn-noicon x-btn-j-standard-button-small-noicon x-item-disabled x-disabled x-btn-disabled x-btn-j-standard-button-small-disabled"]
+
+
+WorkList_ModifyEffectivedates=//*[@id="modifyEffectiveDateButton-btnIconEl"]
+WorkList_ResetBtn=//*[@id="resetButton-btnIconEl"]
+WorkList_ModifyDates_Popup=//*[@id="modifyEffectiveDateWindow_header-title-textEl"]
+WorkList_ModifydatesStartdateLbl=//*[@id="targetStartDateField-labelEl"]
+WorkList_ModifydatesEnddateLbl=//*[@id="targetEndDateField-labelEl"]
+WorkList_ModifydatesStartdateInput=//*[@id="targetStartDateField-inputEl"]
+WorkList_ModifydatesEnddateInput=//*[@id="targetEndDateField-inputEl"]
+WorkList_ModifyDateDoneBtn=//*[@id="addPromoProductsDoneBtn-btnEl"]
+WorkList_ModifyDateResetBtn=//*[contains(@id,'button') and text()="Reset"]
+WorkList_ModifyDateHelpBtn=//div[@class="x-tool x-box-item x-tool-default x-tool-after-title"]//*[@class="x-tool-img x-tool-help"]
+WorkList_ModifyDateCloseBtn=//div[@class="x-tool x-box-item x-tool-default x-tool-after-title" and @data-qtip='Close dialog']/div
+
+WorkLilst_HeaderExceptionSpan=//div[@class='x-component x-border-item x-box-item x-component-default']/span
+
+
+
+WorkList_HeaderCheckbox=//*[contains(@id,'checkcolumn') and contains(@class,'x-column-header-checkbox')]//*[contains(@class,'x-column-header-text')]//*[contains(@class,'header-checkbox')]
+WorkList_HeaderPromotionLbl=//*[contains(@id,'gridcolumn') and text()='Promotion']
+WorkList_HeaderLblDropDownBtn=//*[contains(@id,'gridcolumn') and contains(@class,'x-column-header-trigger')]
+WorkLilst_HeaderSortAscendingBtn=//*[contains(@class,'x-menu-item-text') and text()="Sort Ascending"]
+WorkLilst_HeaderSortDescendingBtn=//*[contains(@class,'x-menu-item-text') and text()="Sort Descending"]
+WorkList_HeaderLblColumnsAnchor=//*[contains(@id,'menuitem') and text()='Columns']
+WorList_HeaderLblColumnsArrowAnchor=//*[contains(@class,'x-menu-item-arrow') ]
+WorkList_HeaderDescrAnchor=//*[contains(@id,'menucheckitem') and text()='Descr']
+WorkList_HeaderCreatedByAnchor=//*[contains(@id,'menucheckitem') and text()='CreatedBy']
+WorkList_HeaderDescrLbl=//div[contains(@class,'')]//*[contains(@id,'gridcolumn') and text()='Descr']
+WorkList_HeaderCreatedByLbl=//*[contains(@id,'gridcolumn') and text()='CreatedBy']
+WorkList_HeaderStartDateLbl=//*[contains(@id,'gridcolumn') and text()='StartDate']
+WorkList_HeaderEndDateLbl=//*[contains(@id,'gridcolumn') and text()='End Date']
+WorkList_HeaderPlanStatusLbl=//*[contains(@id,'gridcolumn') and text()='PlanStatus']
+WorkList_HeaderFcstStatusLbl=//*[contains(@id,'gridcolumn') and text()='Fcststatus']
+WorkList_HeaderPriorityLbl=//*[contains(@id,'gridcolumn') and text()='Priority']
+WorkList_HeaderAdditiveLbl=//*[contains(@id,'checkcolumn') and text()='Additive']
+WorkList_HeaderRevisedOfferDurationLbl=//*[contains(@id,'gridcolumn') and text()='Revised Offer Duration']
+WorkList_HeaderUdcExcludeIndicatorLbl=//*[contains(@id,'checkcolumn') and text()='UDC_EXCLUDE_IND']
+WorkList_HeaderUdcReplaceDefaultIndLbl=//*[contains(@id,'checkcolumn') and text()='UDC_REPLACE_DEFAULT_IND']
+WorLilst_HeaderException=//div[@class='x-component x-border-item x-box-item x-component-default']/span[@style='color: red;']
+
+
+--For verifying text along with descr and created by
+WorkList_VPromotionDescr=//*[contains(@id,"gridview") and @data-recordid='2']//descendant::div[3]
+WorkList_VPromotionCreatedBy=//*[contains(@id,"gridview") and @data-recordid='2']//descendant::div[4]
+WorkList_VPromotionStartDate=//*[contains(@id,"gridview") and @data-recordid='2']//descendant::div[5]
+WorkList_VPromotionEndDate=//*[contains(@id,"gridview") and @data-recordid='2']//descendant::div[6]
+WorkList_VPromotionPlanStatus=//*[contains(@id,"gridview") and @data-recordid='2']//descendant::div[7]
+WorkList_VPromotionFcstStatus=//*[contains(@id,"gridview") and @data-recordid='2']//descendant::div[8]
+WorkList_VPromotionPriority=//*[contains(@id,"gridview") and @data-recordid='2']//descendant::div[9]
+WorkList_VPromotionAdditive_Checked=//*[contains(@id,"gridview") and @data-recordid='2']/descendant::span[contains(@class,'x-grid-checkcolumn x-grid-checkcolumn-checked')]
+WorkList_VPromotionAdditive_Unchecked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[10]/div/img[@class='x-grid-checkcolumn']
+WorkList_VPromotionRevisedOfferDuration=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[11]//div
+WorLilst_VRevisedOfferDuration_NotEmpty=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[11]//div[contains(text(),'0')]
+WorkList_VPromotionUdcExcludeIndicator_Checked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[12]/div/img[(@class='x-grid-checkcolumn x-grid-checkcolumn-checked')]
+WorkList_VPromotionUdcExcludeIndicator_Unchecked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[12]/div/img[(@class='x-grid-checkcolumn')]
+WorkList_VPromotionUdcReplaceDefaultInd_Checked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[13]/div/img[(@class='x-grid-checkcolumn x-grid-checkcolumn-checked')]
+WorkList_VPromotionUdcReplaceDefaultInd_Unchecked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[13]/div/img[(@class='x-grid-checkcolumn')]
+
+
+
+--For single record action workflow
+
+WorkList_RowCheckbox=//*[contains(@id,"gridview") and @data-recordid='5']//descendant::div[1]
+WorkList_PromotionName=//*[contains(@id,"gridview") and @data-recordid='5']//descendant::div[2]
+WorkList_PromotionStartDate=//*[contains(@id,"gridview") and @data-recordid='5']//descendant::div[3]
+WorkList_PromotionEndDate=//*[contains(@id,"gridview") and @data-recordid='5']//descendant::div[4]
+WorkList_PromotionPlanStatus=//*[contains(@id,"gridview") and @data-recordid='5']//descendant::div[5]
+WorkList_PromotionFcstStatus=//*[contains(@id,"gridview") and @data-recordid='5']//descendant::div[6]
+WorkList_PromotionPriority=//*[contains(@id,"gridview") and @data-recordid='5']//descendant::div[7]
+WorkList_PromotionAdditive_Checked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[8]/div/img[(@class='x-grid-checkcolumn x-grid-checkcolumn-checked')]
+WorkList_PromotionAdditive_Unchecked=//tr[contains(@id,'record-ext-record') and @data-recordindex='1']/td[8]/div/img[@class='x-grid-checkcolumn']
+WorkList_PromotionRevisedOfferDuration=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[9]//div
+WorkList_PromotionUdcExcludeIndicator_Checked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[10]/div/img[(@class='x-grid-checkcolumn x-grid-checkcolumn-checked')]
+WorkList_PromotionUdcExcludeIndicator_Unchecked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[10]/div/img[(@class='x-grid-checkcolumn')]
+WorkList_PromotionUdcReplaceDefaultInd_Checked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[11]/div/img[(@class='x-grid-checkcolumn x-grid-checkcolumn-checked')]
+WorkList_PromotionUdcReplaceDefaultInd_Unchecked=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[11]/div/img[(@class='x-grid-checkcolumn')]
+WorLilst_RevisedOfferDuration_NotEmpty=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[9]//div[contains(text(),'0')]
+
+--Row wise for Mass Actions
+
+WorkList_PromotionNameRow1=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[2]/div
+WorkList_PromotionPlanStatusRow1=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[5]/div
+WorkList_PromotionFcstStatusRow1=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[6]/div
+WorkList_PromotionRevisedOfferDuration_Row1=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[9]//div
+WorLilst_RevisedOfferDuration_NotEmpty_Row1=//tr[contains(@id,'record-ext-record') and @data-recordindex='0']/td[9]//div[contains(text(),'0')]
+
+WorkList_PromotionNameRow2=//tr[contains(@id,'record-ext-record') and @data-recordindex='1']/td[2]/div
+WorkList_PromotionPlanStatusRow2=//tr[contains(@id,'record-ext-record') and @data-recordindex='1']/td[5]/div
+WorkList_PromotionFcstStatusRow2=//tr[contains(@id,'record-ext-record') and @data-recordindex='1']/td[6]/div
+WorkList_PromotionRevisedOfferDuration_Row2=//tr[contains(@id,'record-ext-record') and @data-recordindex='1']/td[9]//div
+WorLilst_RevisedOfferDuration_NotEmpty_Row2=//tr[contains(@id,'record-ext-record') and @data-recordindex='1']/td[9]//div[contains(text(),'0')]
+
+WorkList_PromotionNameRow3=//tr[contains(@id,'record-ext-record') and @data-recordindex='2']/td[2]/div
+WorkList_PromotionPlanStatusRow3=//tr[contains(@id,'record-ext-record') and @data-recordindex='2']/td[5]/div
+WorkList_PromotionFcstStatusRow3=//tr[contains(@id,'record-ext-record') and @data-recordindex='2']/td[6]/div
+WorkList_PromotionRevisedOfferDuration_Row3=//tr[contains(@id,'record-ext-record') and @data-recordindex='2']/td[9]//div
+WorkLilst_RevisedOfferDuration_NotEmpty_Row3=//tr[contains(@id,'record-ext-record') and @data-recordindex='2']/td[9]//div[contains(text(),'0')]
+
+
+--PRICE GLOBAL PARAM	
+
+EnableForecast_StringValueDiv=//*[@class='cns' and (text()='FALSE') or text()='TRUE' ]
+EnableForecast_StringValueInput=//*[@class='gef j-main-grid-div-normal']//*[@class='controltext']
+PriceGlobalParam_Savebtn=//*[@id='FEGRID_7_2_1_1_Save']
+DataModelManager_RefreshCluster=//*[@id='refresh_button_cluster_refresh']
+
+
+
+PromoPrompt=//*[@id="PopupAppDiv"]/form/table[2]//tbody/tr[2]/td[3]/input

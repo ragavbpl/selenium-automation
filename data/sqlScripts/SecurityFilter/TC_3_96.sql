@@ -1,0 +1,13 @@
+/* INSERT THE REQUIRED ROWS INTO LOCATION TABLE */
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC1', 'TC_3_96_LOC1 DESC', 1);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC2', 'TC_3_96_LOC2 DESC', 1);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC3', 'TC_3_96_LOC3 DESC', 0);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC4', 'TC_3_96_LOC4 DESC', 0);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC5', 'TC_3_96_LOC5 DESC', 0);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC6', 'TC_3_96_LOC6 DESC', 0);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC7', 'TC_3_96_LOC7 DESC', 0);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC8', 'TC_3_96_LOC8 DESC', 0);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC9', 'TC_3_96_LOC9 DESC', 0);
+Insert into LOC (LOC, DESCR, LOC_BOL2_SF) Values ('TC_3_96_LOC10', 'TC_3_96_LOC10 DESC', 0);
+COMMIT;
+exit;

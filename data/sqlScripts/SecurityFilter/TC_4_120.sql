@@ -1,0 +1,12 @@
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC1', 'TC_4_102_LOC1', 2);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC2', 'TC_4_102_LOC2', 2);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC3', 'TC_4_102_LOC3', 2);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC4', 'TC_4_102_LOC4', 2);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC5', 'TC_4_102_LOC5', 2);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC6', 'TC_4_102_LOC6', 6);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC7', 'TC_4_102_LOC7', 7);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC8', 'TC_4_102_LOC8', 8);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC9', 'TC_4_102_LOC9', 9);
+Insert into LOC (LOC, DESCR, LOC_INT_SF) Values ('TC_4_102_LOC10', 'TC_4_102_LOC10', 10);
+COMMIT;
+exit;

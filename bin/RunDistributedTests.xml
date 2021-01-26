@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="../" name="PlatformSeleniumNew">
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="lib/vendor/ant-contrib.jar" />
+		</classpath>
+	</taskdef>
+
+	<target name="createDistributionSetup">
+		<if>
+			<isset property="isAppTeam" />
+			<then>
+				<ant antfile="bin/RunAppTests.xml" inheritall="true" target="build-jar" />
+			</then>
+			<else>
+				<ant antfile="bin/RunTests.xml" inheritall="true" target="build-jar" />
+			</else>
+		</if>
+		<java classname="com.jda.qa.platform.framework.util.ExecutionDistributor">
+			<classpath>
+				<pathelement location="lib/platform/PlatformSelenium.jar" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="runDistributedTests" depends="createDistributionSetup">
+		<property file="settings/distributor1.properties" />
+
+		<for list="${browserItrParam}" param="browserNumber">
+			<sequential>
+				<runParamTest distID="@{browserNumber}" />
+			</sequential>
+		</for>
+		<waitfor maxwait="24" maxwaitunit="hour" timeoutproperty="executionTimeout">
+			<available file="reports\results.properties" />
+		</waitfor>
+
+		<fail message="Distributed Execution does not complete in the specified timeout.">
+			<condition>
+				<isset property="executionTimeout" />
+			</condition>
+		</fail>
+	</target>
+
+	<macrodef name="runParamTest">
+		<attribute name="distID" default="1" />
+		<sequential>
+			<if>
+				<isset property="isAppTeam" />
+				<then>
+					<java classname="com.jda.qa.platform.framework.base.MainEngine" fork="true" spawn="true">
+						<classpath>
+							<pathelement location="lib/appTeam/PlatformAppSelenium.jar" />
+							<pathelement location="lib/platform/PlatformSelenium.jar" />
+						</classpath>
+						<arg value="-properties" />
+						<arg value="distributor@{distID}.properties" />
+					</java>
+				</then>
+				<else>
+					<java classname="com.jda.qa.platform.framework.base.MainEngine" fork="true" spawn="true">
+						<classpath>
+							<pathelement location="lib/platform/PlatformSelenium.jar" />
+						</classpath>
+						<arg value="-properties" />
+						<arg value="distributor@{distID}.properties" />
+					</java>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+</project>

@@ -1,0 +1,6 @@
+DESCRIPTION;*ITEM
+FEIMPORT_11_SPECIAL;ITEM11SP.,[]?:{}`-=!@#$%*()+_'|&>
+FEIMPORT_12_SPECIAL;I"TEM12SP.,[]?:{}`-=!@#$%*()+_'|&>
+FEIMPORT_13_SPECIAL;ITEM13SP.,[]?:{}`-=!@#$%*()+_'|&>
+FEIMPORT_14_SPECIAL;IT"EM14SP.,[]?:{}`-=!@#$%*()+_'|&>
+FEIMPORT_15_SPECIAL;ITEM15SP.,[]?:{}`-=!@#$%*()+_'|&>

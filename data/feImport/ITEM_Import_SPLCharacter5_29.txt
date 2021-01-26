@@ -1,0 +1,6 @@
+DESCRIPTION;*ITEM
+FEIMPORT_1_SPECIAL;ITEM1SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_2_SPECIAL;ITEM2SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_3_SPECIAL;ITEM3SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_4_SPECIAL;ITEM4SP.,[]?:{}`-=!@#$%^*()+_'|&>
+FEIMPORT_5_SPECIAL;ITEM5SP.,[]?:{}`-=!@#$%^*()+_'|&>

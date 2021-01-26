@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_de.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_en.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_es.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_fr.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_it.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_ja.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_pt.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_ru.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_zh.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_zh_CN.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_de.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_en.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_es.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_fr.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_it.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_ja.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_pt.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_ru.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_zh.properties" />
+    <file url="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_zh_CN.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_de.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_en.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_es.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_fr.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_it.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_ja.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_pt.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_ru.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_zh.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointImageResourceBundle_zh_CN.properties" />
+      <base-name>ViewPointImageResourceBundle</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundleR.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_de.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_en.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_es.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_fr.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_it.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_ja.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_pt.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_ru.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_zh.properties" />
+      <file value="file://$PROJECT_DIR$/resources/ViewPointResourceBundle_zh_CN.properties" />
+      <base-name>ViewPointResourceBundle</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>

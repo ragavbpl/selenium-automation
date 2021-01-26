@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="../" name="PlatformSelenium">
+
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+
+	<property name="browser" location="C:\Program Files (x86)\Internet Explorer\iexplore.exe" />
+	<property name="resultsfile" location="reports/Html_Reports/wd_Index.html" />
+
+	<path id="PlatformSelenium.classpath">
+		<pathelement location="classes" />
+		<pathelement location="resources" />
+		<pathelement location="settings" />
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="init" depends="clean">
+		<mkdir dir="classes" />
+		<mkdir dir="logs" />
+		<mkdir dir="lib\platform" />
+		<copy includeemptydirs="false" todir="classes">
+			<fileset dir="source" excludes="**/*.launch, **/*.java" />
+		</copy>
+	</target>
+
+	<target name="clean">
+		<delete dir="logs" includes="**\*" />
+		<delete file="lib\platform\PlatformSelenium.jar" failonerror="false" />
+		<delete>
+			<fileset dir="reports" includes="**/*_Results.xlsx" />
+			<fileset dir="reports\Html_Reports" includes="**/*.html" excludes="*wd_*.html" />
+		</delete>
+		<delete file="reports\Html_Reports\wd_IndexListLinks.html" />
+		<delete file="reports\Html_Reports\wd_FailedTestCases.html" />
+		<delete file="reports\Html_Reports\wd_IndexFrameContent.html" />
+	</target>
+
+
+	<target depends="init" name="build-jar">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<pathconvert property="classpathProp" refid="PlatformSelenium.classpath" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="classes" source="${source}" target="${target}">
+			<src path="source" />
+			<classpath refid="PlatformSelenium.classpath" />
+		</javac>
+
+		<manifestclasspath property="jar.classpath" jarfile="lib\platform\PlatformSelenium.jar">
+			<classpath refid="PlatformSelenium.classpath" />
+		</manifestclasspath>
+
+		<jar destfile="lib\platform\PlatformSelenium.jar" basedir="classes">
+			<manifest id="manifest.mf">
+				<attribute name="Main-Class" value="com.jda.qa.platform.framework.base.MainEngine" />
+				<attribute name="Class-Path" value="${jar.classpath}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="runTests" depends="build-jar">
+		<java jar="lib\platform\PlatformSelenium.jar" fork="true" />
+	</target>
+
+	<target name="generateReports">
+		<java jar="lib\platform\PlatformSelenium.jar" fork="true">
+			<arg value="GenReports" />
+		</java>
+
+		<exec executable="${browser}" spawn="true">
+			<arg value="${resultsfile}" />
+		</exec>
+	</target>
+
+</project>
